@@ -19,11 +19,7 @@ public class ServerStart {
 
         Map<String, String> differentPlayers = new HashMap<>();
 
-
-
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-
-
 
             int numPlayers = 1;
             System.out.println("Starting...");
@@ -37,18 +33,19 @@ public class ServerStart {
                     differentPlayers.put(emisorClave, "Jugador" + numPlayers);
                     numPlayers++;
                     Player jugadorNuevo =new Player(differentPlayers.get(emisorClave),socket);
+                    System.out.println("[SERVIDOR]: "+jugadorNuevo.getNombre()+" Ha entrado");
                     jugadorNuevo.start();
                     players.add(jugadorNuevo);
                 }
 
+
                 BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 receivedMessage = input.readLine();
-                if (receivedMessage != null) {
-                    System.out.println(  differentPlayers.get(emisorClave)+": " + receivedMessage);
-                }
 
+                    System.out.println(  differentPlayers.get(emisorClave)+": " + receivedMessage);
 
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

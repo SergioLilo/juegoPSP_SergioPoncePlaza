@@ -44,7 +44,6 @@ public class Player extends Thread {
 
         try {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            OutputStreamWriter output = new OutputStreamWriter(socket.getOutputStream());
             String receivedMessage;
             boolean salir=true;
 
@@ -59,6 +58,13 @@ public class Player extends Thread {
                     if (command[0].equals("/resumen")) {
 
                         resumen();
+                    }
+                    if (command[0].equals("/mio")) {
+
+                        mio();
+                    }
+                    if (command[0].equals("/dar")){
+
                     }
 
                     if (receivedMessage.equalsIgnoreCase("/salir")) {
@@ -114,7 +120,16 @@ public class Player extends Thread {
         }
 
     }
+    public void mio(){
+        //ClientStart.imprimir(this.toString());
 
+        System.out.println("=== Tus datos ===");
+       System.out.println(this);
+
+    }
+    public void dar(){
+
+    }
     @Override
     public String toString() {
         return  nombre + " | pv=" + pv + " dinero=" + dinero+" |";
